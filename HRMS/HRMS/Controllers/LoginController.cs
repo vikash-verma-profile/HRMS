@@ -23,9 +23,7 @@ namespace HRMS.Controllers
         {
             if(db.tblLogins.Any(x=>x.UserName==login.UserName && x.Password == login.Password))
             {
-                //if condition is true come here
-            
-            
+                return RedirectToAction("Index", "Dashboard");                
             }
             else
             {

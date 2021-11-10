@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Entity\HRMSModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -2079,6 +2080,7 @@
     <Content Include="font\OFL.txt" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\ruang-admin.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2287,6 +2289,7 @@
     </Content>
     <None Include="packages.config" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
