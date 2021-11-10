@@ -163,8 +163,7 @@
     <Content Include="Content\img\error.svg" />
     <Content Include="Content\img\girl.png" />
     <Content Include="Content\img\innovation.svg" />
-    <Content Include="Content\img\logo\logo2-old.png" />
-    <Content Include="Content\img\logo\logo2.png" />
+    <Content Include="Content\img\logo.png" />
     <Content Include="Content\img\man.png" />
     <Content Include="Content\img\screenshot\ss2.png" />
     <Content Include="Content\img\think.svg" />
