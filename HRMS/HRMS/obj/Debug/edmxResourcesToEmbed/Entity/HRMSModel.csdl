@@ -3,6 +3,8 @@
   <EntityContainer Name="HRMSDBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tblLogins" EntityType="HRMSDBModel.tblLogin" />
     <EntitySet Name="tblMenuMasters" EntityType="HRMSDBModel.tblMenuMaster" />
+    <EntitySet Name="tblDepartments" EntityType="HRMSDBModel.tblDepartment" />
+    <EntitySet Name="tblEmployees" EntityType="HRMSDBModel.tblEmployee" />
   </EntityContainer>
   <EntityType Name="tblLogin">
     <Key>
@@ -21,5 +23,21 @@
     <Property Name="ControllerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="IsParent" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblDepartment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblEmployee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" />
   </EntityType>
 </Schema>

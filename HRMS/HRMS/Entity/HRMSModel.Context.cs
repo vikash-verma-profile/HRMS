@@ -27,5 +27,7 @@ namespace HRMS.Entity
     
         public virtual DbSet<tblLogin> tblLogins { get; set; }
         public virtual DbSet<tblMenuMaster> tblMenuMasters { get; set; }
+        public virtual DbSet<tblDepartment> tblDepartments { get; set; }
+        public virtual DbSet<tblEmployee> tblEmployees { get; set; }
     }
 }
