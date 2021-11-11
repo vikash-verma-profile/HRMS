@@ -116,15 +116,29 @@
             `;
 
             for (var i = 0; i < data.length; i++) {
-
-                menu = menu + `<li class="nav-item">
-                                    <a class="nav-link" href="/`+ data[i].ControllerName + `/` + data[i].ActionName+`/">
-                                            <span>`+ data[i].MenuText+`</span>
-                                    </a>
-`
-                console.log(data[i]);
+                if (data[i].IsParent == 0) {
+                    menu = menu + `<li class="nav-item">
+                                    <a class="nav-link" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+                                            <span>`+ data[i].MenuText + `</span>
+                                    </a><div id="`+ data[i].Id + `" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar"></div> </li>`
+                }
             }
             $('#accordionSidebar').html(menu);
+            
+            //doing for childs
+            for (var i = 0; i < data.length; i++)
+            {
+                menu = "";
+                if (data[i].IsParent > 0)
+                {
+                    menu = menu + ` <div class="bg-white py-2 collapse-inner rounded">
+                            <a class="collapse-item" href="#">`+ data[i].MenuText + `</a>
+                          </div>` ;
+                    $("#" + data[i].IsParent).html(menu);
+                    console.log(menu);
+                }
+            }
            
         }
     });
