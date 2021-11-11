@@ -1,0 +1,35 @@
+﻿@model List<HRMS.Models.Department>
+@{
+    ViewBag.Title = "DepartmentList";
+}
+
+<div class="card">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Department List</h6>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Department Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><a href="#">@item.Id</a></td>
+                        <td>@item.DepartmentName</td>
+                        <td></td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
