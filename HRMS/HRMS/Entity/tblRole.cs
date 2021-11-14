@@ -12,14 +12,9 @@ namespace HRMS.Entity
     using System;
     using System.Collections.Generic;
     
-    public partial class tblEmployee
+    public partial class tblRole
     {
         public int Id { get; set; }
-        public string EmployeeId { get; set; }
-        public string EmployeeName { get; set; }
-        public Nullable<int> DepartmentId { get; set; }
-        public Nullable<int> Gender { get; set; }
-        public string DOB { get; set; }
-        public Nullable<int> RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }
