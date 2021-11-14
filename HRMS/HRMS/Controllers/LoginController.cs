@@ -23,6 +23,11 @@ namespace HRMS.Controllers
         {
             if(db.tblLogins.Any(x=>x.UserName==login.UserName && x.Password == login.Password))
             {
+
+                //create a session here
+                var loginObject = db.tblLogins.Where(x => x.UserName == login.UserName && x.Password == login.Password).FirstOrDefault();
+                var EmployeeObject = db.tblEmployees.Where(x => x.Id == loginObject.EmployeeId).FirstOrDefault();
+                Session["UserName"] = EmployeeObject.EmployeeName;
                 return RedirectToAction("Index", "Dashboard");                
             }
             else
@@ -30,6 +35,13 @@ namespace HRMS.Controllers
                 //if condition fails come here
             }
             return View();
+        }
+
+        public ActionResult Logout()
+        {
+            Session["UserName"] = "";
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
     }
 }

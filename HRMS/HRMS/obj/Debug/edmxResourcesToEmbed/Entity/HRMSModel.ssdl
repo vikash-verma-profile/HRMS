@@ -15,6 +15,8 @@
     <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
     <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" />
     <Property Name="DepartmentId" Type="int" />
+    <Property Name="Gender" Type="int" />
+    <Property Name="DOB" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tblLogin">
     <Key>
@@ -23,6 +25,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="100" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeId" Type="int" />
   </EntityType>
   <EntityType Name="tblMenuMaster">
     <Key>

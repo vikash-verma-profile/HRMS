@@ -1,9 +1,9 @@
 ﻿using HRMS.Entity;
-using System;
-using System.Collections.Generic;
+using HRMS.Models;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using HRMS.Common;
+using System;
 
 namespace HRMS.Controllers
 {
@@ -12,6 +12,7 @@ namespace HRMS.Controllers
         // GET: Employee
 
         HRMSDBEntities db = new HRMSDBEntities();
+        [HttpGet]
         public ActionResult Index()
         {
             //get departments from table
@@ -21,7 +22,21 @@ namespace HRMS.Controllers
 
             //to get the data in view
             ViewBag.departmentlist = departmentlist;
+            //get value from enum to bind the dropdown
+
+            var enumData = from Gender g in Enum.GetValues(typeof(Gender)) select new
+            {
+                Id = (int)g,//type casting to integer 
+                Name = g.ToString() //type casting vale to string
+            };
+            ViewBag.genderList = enumData;
             //return control to view
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Index(Employee employee)
+        {
+          
             return View();
         }
     }

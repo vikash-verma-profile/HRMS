@@ -13,6 +13,7 @@ namespace HRMS.Controllers
         HRMSDBEntities db = new HRMSDBEntities();
         public ActionResult Index()
         {
+            
             return View();
         }
 

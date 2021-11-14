@@ -18,5 +18,7 @@ namespace HRMS.Entity
         public string EmployeeId { get; set; }
         public string EmployeeName { get; set; }
         public Nullable<int> DepartmentId { get; set; }
+        public Nullable<int> Gender { get; set; }
+        public string DOB { get; set; }
     }
 }

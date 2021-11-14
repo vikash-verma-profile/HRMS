@@ -4,6 +4,7 @@
     <EntitySetMapping Name="tblLogins">
       <EntityTypeMapping TypeName="HRMSDBModel.tblLogin">
         <MappingFragment StoreEntitySet="tblLogin">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
@@ -32,6 +33,8 @@
     <EntitySetMapping Name="tblEmployees">
       <EntityTypeMapping TypeName="HRMSDBModel.tblEmployee">
         <MappingFragment StoreEntitySet="tblEmployee">
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
           <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />

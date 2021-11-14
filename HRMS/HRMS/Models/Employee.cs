@@ -10,6 +10,8 @@ namespace HRMS.Models
         public int Id { get; set; }
         public string EmployeeID { get; set; }
         public string EmployeeName { get; set; }
-        public string EmployeeDepartment { get; set; }
+        public int DepartmentId { get; set; }
+        public int Gender { get; set; }
+        public DateTime DOB { get; set; }
     }
 }

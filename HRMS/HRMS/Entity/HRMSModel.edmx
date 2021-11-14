@@ -20,6 +20,8 @@
           <Property Name="EmployeeId" Type="nvarchar" MaxLength="50" />
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" />
           <Property Name="DepartmentId" Type="int" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblLogin">
           <Key>
@@ -28,6 +30,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="100" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="int" />
         </EntityType>
         <EntityType Name="tblMenuMaster">
           <Key>
@@ -62,6 +65,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeId" Type="Int32" />
         </EntityType>
         <EntityType Name="tblMenuMaster">
           <Key>
@@ -88,6 +92,8 @@
           <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -98,6 +104,7 @@
           <EntitySetMapping Name="tblLogins">
             <EntityTypeMapping TypeName="HRMSDBModel.tblLogin">
               <MappingFragment StoreEntitySet="tblLogin">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -126,6 +133,8 @@
           <EntitySetMapping Name="tblEmployees">
             <EntityTypeMapping TypeName="HRMSDBModel.tblEmployee">
               <MappingFragment StoreEntitySet="tblEmployee">
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />

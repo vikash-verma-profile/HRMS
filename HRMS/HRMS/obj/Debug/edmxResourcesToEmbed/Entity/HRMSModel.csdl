@@ -13,6 +13,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeId" Type="Int32" />
   </EntityType>
   <EntityType Name="tblMenuMaster">
     <Key>
@@ -39,5 +40,7 @@
     <Property Name="EmployeeId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>
