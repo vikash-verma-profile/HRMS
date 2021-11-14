@@ -13,5 +13,6 @@ namespace HRMS.Models
         public int DepartmentId { get; set; }
         public int Gender { get; set; }
         public DateTime DOB { get; set; }
+        public string Email { get; set; }
     }
 }

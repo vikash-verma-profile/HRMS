@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using HRMS.Common;
 using System;
+using System.Data.Entity;
 
 namespace HRMS.Controllers
 {
@@ -36,7 +37,33 @@ namespace HRMS.Controllers
         [HttpPost]
         public ActionResult Index(Employee employee)
         {
-          
+
+            tblEmployee tblEmployee = new tblEmployee();
+            tblEmployee.EmployeeName = employee.EmployeeName;
+            tblEmployee.DepartmentId = employee.DepartmentId;
+            tblEmployee.Gender = employee.Gender;
+            tblEmployee.DOB = employee.DOB.ToShortDateString();
+
+            //added employee object inside db
+            db.tblEmployees.Add(tblEmployee);
+            db.SaveChanges();
+            //updated Employee id in db
+            tblEmployee.EmployeeId = "RNO000" + tblEmployee.Id;
+            db.Entry(tblEmployee).State = EntityState.Modified;
+            db.SaveChanges();
+
+            //Creating login for user
+            tblLogin tblLogin = new tblLogin();
+            tblLogin.EmployeeId = tblEmployee.Id;
+            tblLogin.UserName= employee.Email;
+            tblLogin.Password = "123456";
+
+            //added login to db
+            db.tblLogins.Add(tblLogin);
+            db.SaveChanges();
+
+            //returning back to employeeList
+
             return View();
         }
     }

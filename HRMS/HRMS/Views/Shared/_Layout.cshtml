@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="img/logo/logo.png" rel="icon">
     <title></title>
     <link href="~/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
     <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -92,7 +93,7 @@
     </a>
 
 
-    <script src="~/Content/vendor/jquery/jquery.min.js"></script>
+  
     <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/ruang-admin.js"></script>
 
@@ -134,7 +135,7 @@
             var ParentIds = data.filter(x => x.IsParent == 0);
 
 
-            console.log(ParentIds);
+        
             //doing for childs
 
             //looping on parent id's
@@ -142,7 +143,7 @@
 
                 //child id's on the basis of parent id
                 var childids = data.filter(x => x.IsParent == ParentIds[i].Id);
-                console.log(childids);
+               
 
                 menu = "";
 
