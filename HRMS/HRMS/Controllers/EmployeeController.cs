@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using HRMS.Common;
 using System;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace HRMS.Controllers
 {
@@ -64,7 +65,17 @@ namespace HRMS.Controllers
 
             //returning back to employeeList
 
-            return View();
+            return RedirectToAction("EmployeeList");
+        }
+        public ActionResult EmployeeList()
+        {
+            var employeelist = db.tblEmployees.ToList();
+            List<Employee> employees = new List<Employee>();
+            foreach (var item in employeelist)
+            {
+                employees.Add(new Employee { Id = item.Id, EmployeeName = item.EmployeeName });
+            }
+            return View(employees);
         }
     }
 }
