@@ -96,7 +96,7 @@
     <script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/Scripts/ruang-admin.js"></script>
 
-    
+
 </body>
 
 </html>
@@ -106,7 +106,7 @@
         type: "Get",
         contentType: "application/json; charset=utf-8",
         success: function (data) {
-            var menu = `<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            var menu = `<a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                 <div class="sidebar-brand-icon">
                     <img src="/Content/img/logo.png">
                 </div>
@@ -115,31 +115,47 @@
             <hr class="sidebar-divider my-0">
             `;
 
+
+            //Adding parent Menu
             for (var i = 0; i < data.length; i++) {
                 if (data[i].IsParent == 0) {
                     menu = menu + `<li class="nav-item">
-                                    <a class="nav-link" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+                                    <a class="nav-link" class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse`+ data[i].Id + `"
           aria-expanded="true" aria-controls="collapseBootstrap">
                                             <span>`+ data[i].MenuText + `</span>
-                                    </a><div id="`+ data[i].Id + `" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar"></div> </li>`
+                                    </a><div id="collapse`+ data[i].Id + `" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar"></div> </li>`;
                 }
+
             }
             $('#accordionSidebar').html(menu);
-            
+            // parent menu addition complete
+
+            //extraction of all parent id's
+            var ParentIds = data.filter(x => x.IsParent == 0);
+
+
+            console.log(ParentIds);
             //doing for childs
-            for (var i = 0; i < data.length; i++)
-            {
+
+            //looping on parent id's
+            for (var i = 0; i < ParentIds.length; i++) {
+
+                //child id's on the basis of parent id
+                var childids = data.filter(x => x.IsParent == ParentIds[i].Id);
+                console.log(childids);
+
                 menu = "";
-                if (data[i].IsParent > 0)
-                {
-                    menu = menu + ` <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="#">`+ data[i].MenuText + `</a>
-                          </div>` ;
-                    $("#" + data[i].IsParent).html(menu);
-                    console.log(menu);
+
+                if (childids.length > 0) {
+                    menu = menu + ` <div class="bg-white py-2 collapse-inner rounded">`;
+                    for (var j = 0; j < childids.length; j++) {
+                        menu = menu + `   <a class="collapse-item" href="/` + childids[j].ControllerName + `/` + childids[j].ActionName+`">`+ childids[j].MenuText + `</a>`;
+                    }
+                    menu = menu + ` </div>`;
+                    $("#collapse" + ParentIds[i].Id).html(menu);
                 }
             }
-           
+
         }
     });
 </script>
