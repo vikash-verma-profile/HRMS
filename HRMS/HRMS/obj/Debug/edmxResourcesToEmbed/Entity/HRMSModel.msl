@@ -73,5 +73,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetIsCheckIn" FunctionName="HRMSDBModel.Store.GetIsCheckIn">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HRMSDBModel.GetIsCheckIn_Result">
+          <ScalarProperty Name="CheckedIn" ColumnName="CheckedIn" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

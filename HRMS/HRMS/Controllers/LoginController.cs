@@ -28,6 +28,7 @@ namespace HRMS.Controllers
                 var loginObject = db.tblLogins.Where(x => x.UserName == login.UserName && x.Password == login.Password).FirstOrDefault();
                 var EmployeeObject = db.tblEmployees.Where(x => x.Id == loginObject.EmployeeId).FirstOrDefault();
                 Session["UserName"] = EmployeeObject.EmployeeName;
+                Session["EmployeeId"] = EmployeeObject.Id;
                 return RedirectToAction("Index", "Dashboard");                
             }
             else

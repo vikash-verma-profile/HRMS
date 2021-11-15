@@ -70,6 +70,9 @@
           <Property Name="RoleId" Type="int" />
           <Property Name="MenuId" Type="int" />
         </EntityType>
+        <Function Name="GetIsCheckIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="EmployeeId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="HRMSDBModelStoreContainer">
           <EntitySet Name="tblAttendance" EntityType="Self.tblAttendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDepartment" EntityType="Self.tblDepartment" Schema="dbo" store:Type="Tables" />
@@ -91,6 +94,9 @@
           <EntitySet Name="tblAttendances" EntityType="HRMSDBModel.tblAttendance" />
           <EntitySet Name="tblRoles" EntityType="HRMSDBModel.tblRole" />
           <EntitySet Name="tblRoleMenuMappings" EntityType="HRMSDBModel.tblRoleMenuMapping" />
+          <FunctionImport Name="GetIsCheckIn" ReturnType="Collection(HRMSDBModel.GetIsCheckIn_Result)">
+            <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblLogin">
           <Key>
@@ -157,6 +163,10 @@
           <Property Name="RoleId" Type="Int32" />
           <Property Name="MenuId" Type="Int32" />
         </EntityType>
+        <ComplexType Name="GetIsCheckIn_Result">
+          <Property Type="Int32" Name="CheckedIn" Nullable="true" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -235,6 +245,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetIsCheckIn" FunctionName="HRMSDBModel.Store.GetIsCheckIn">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRMSDBModel.GetIsCheckIn_Result">
+                <ScalarProperty Name="CheckedIn" ColumnName="CheckedIn" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

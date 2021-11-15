@@ -65,6 +65,9 @@
     <Property Name="RoleId" Type="int" />
     <Property Name="MenuId" Type="int" />
   </EntityType>
+  <Function Name="GetIsCheckIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeId" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="HRMSDBModelStoreContainer">
     <EntitySet Name="tblAttendance" EntityType="Self.tblAttendance" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblDepartment" EntityType="Self.tblDepartment" Schema="dbo" store:Type="Tables" />

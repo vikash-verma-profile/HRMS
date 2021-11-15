@@ -8,6 +8,9 @@
     <EntitySet Name="tblAttendances" EntityType="HRMSDBModel.tblAttendance" />
     <EntitySet Name="tblRoles" EntityType="HRMSDBModel.tblRole" />
     <EntitySet Name="tblRoleMenuMappings" EntityType="HRMSDBModel.tblRoleMenuMapping" />
+    <FunctionImport Name="GetIsCheckIn" ReturnType="Collection(HRMSDBModel.GetIsCheckIn_Result)">
+      <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="tblLogin">
     <Key>
@@ -74,4 +77,8 @@
     <Property Name="RoleId" Type="Int32" />
     <Property Name="MenuId" Type="Int32" />
   </EntityType>
+  <ComplexType Name="GetIsCheckIn_Result">
+    <Property Type="Int32" Name="CheckedIn" Nullable="true" />
+    <Property Type="Int32" Name="Id" Nullable="false" />
+  </ComplexType>
 </Schema>

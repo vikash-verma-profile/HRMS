@@ -12,6 +12,8 @@ namespace HRMS.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class HRMSDBEntities : DbContext
     {
@@ -32,5 +34,14 @@ namespace HRMS.Entity
         public virtual DbSet<tblAttendance> tblAttendances { get; set; }
         public virtual DbSet<tblRole> tblRoles { get; set; }
         public virtual DbSet<tblRoleMenuMapping> tblRoleMenuMappings { get; set; }
+    
+        public virtual ObjectResult<GetIsCheckIn_Result> GetIsCheckIn(Nullable<int> employeeId)
+        {
+            var employeeIdParameter = employeeId.HasValue ?
+                new ObjectParameter("EmployeeId", employeeId) :
+                new ObjectParameter("EmployeeId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetIsCheckIn_Result>("GetIsCheckIn", employeeIdParameter);
+        }
     }
 }

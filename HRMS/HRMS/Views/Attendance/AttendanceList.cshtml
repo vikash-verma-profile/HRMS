@@ -1,0 +1,40 @@
+﻿@model List<HRMS.Models.Attendance>
+@{
+    ViewBag.Title = "AttendanceList";
+}
+
+
+<div class="card">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Attendance History</h6>
+    </div>
+    <div class="table-responsive">
+        <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Check In</th>
+                    <th>Check Out</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td><a href="#">@item.Id</a></td>
+                    <td>@item.CheckIn</td>
+                    <td>@item.CheckOut</td>
+                    <td></td>
+                </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer"></div>
+</div>
+
+
+
