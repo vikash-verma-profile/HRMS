@@ -5,6 +5,9 @@
     <EntitySet Name="tblMenuMasters" EntityType="HRMSDBModel.tblMenuMaster" />
     <EntitySet Name="tblDepartments" EntityType="HRMSDBModel.tblDepartment" />
     <EntitySet Name="tblEmployees" EntityType="HRMSDBModel.tblEmployee" />
+    <EntitySet Name="tblAttendances" EntityType="HRMSDBModel.tblAttendance" />
+    <EntitySet Name="tblRoles" EntityType="HRMSDBModel.tblRole" />
+    <EntitySet Name="tblRoleMenuMappings" EntityType="HRMSDBModel.tblRoleMenuMapping" />
   </EntityContainer>
   <EntityType Name="tblLogin">
     <Key>
@@ -42,5 +45,33 @@
     <Property Name="DepartmentId" Type="Int32" />
     <Property Name="Gender" Type="Int32" />
     <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblAttendance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CheckIn" Type="DateTime" Precision="3" />
+    <Property Name="CheckOut" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblRoleMenuMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="MenuId" Type="Int32" />
   </EntityType>
 </Schema>

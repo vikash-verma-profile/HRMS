@@ -148,6 +148,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HRMSModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entity\tblAttendance.cs">
+      <DependentUpon>HRMSModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\tblDepartment.cs">
       <DependentUpon>HRMSModel.tt</DependentUpon>
     </Compile>
@@ -158,6 +161,12 @@
       <DependentUpon>HRMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\tblMenuMaster.cs">
+      <DependentUpon>HRMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblRole.cs">
+      <DependentUpon>HRMSModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\tblRoleMenuMapping.cs">
       <DependentUpon>HRMSModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
