@@ -1,4 +1,5 @@
-﻿using HRMS.Entity;
+﻿using HRMS.Common;
+using HRMS.Entity;
 using HRMS.Models;
 using Newtonsoft.Json;
 using System;
@@ -27,11 +28,11 @@ namespace HRMS.Controllers
         {
             var loginResponseObject = new LoginResponse();
             var client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44347/");
+            client.BaseAddress = new Uri(Constants.BaseUrl);
             client.DefaultRequestHeaders.Clear();
             client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             var loginjson = JsonConvert.SerializeObject(login);
-            HttpResponseMessage res = await client.PostAsync("api/Login/Login", new StringContent(loginjson,Encoding.UTF8, "application/json"));
+            HttpResponseMessage res = await client.PostAsync(Constants.loginendpoint, new StringContent(loginjson,Encoding.UTF8, "application/json"));
             if (res.IsSuccessStatusCode)
             {
                 var loginresult = res.Content.ReadAsStringAsync().Result;

@@ -65,6 +65,7 @@
     <Property Name="RoleId" Type="int" />
     <Property Name="MenuId" Type="int" />
   </EntityType>
+  <Function Name="GetDashboardData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GetIsCheckIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="EmployeeId" Type="int" Mode="In" />
   </Function>

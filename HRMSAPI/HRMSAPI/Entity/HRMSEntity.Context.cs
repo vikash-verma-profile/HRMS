@@ -43,5 +43,10 @@ namespace HRMSAPI.Entity
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetIsCheckIn_Result>("GetIsCheckIn", employeeIdParameter);
         }
+    
+        public virtual ObjectResult<GetDashboardData_Result> GetDashboardData()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDashboardData_Result>("GetDashboardData");
+        }
     }
 }

@@ -81,5 +81,15 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetDashboardData" FunctionName="HRMSDBModel.Store.GetDashboardData">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HRMSDBModel.GetDashboardData_Result">
+          <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
+          <ScalarProperty Name="EmployeeAbsent" ColumnName="EmployeeAbsent" />
+          <ScalarProperty Name="NewEmployeeCount" ColumnName="NewEmployeeCount" />
+          <ScalarProperty Name="EmployeePresent" ColumnName="EmployeePresent" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

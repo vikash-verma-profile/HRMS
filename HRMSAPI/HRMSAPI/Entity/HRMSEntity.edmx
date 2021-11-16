@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HRMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HRMSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tblAttendance">
           <Key>
             <PropertyRef Name="Id" />
@@ -70,6 +70,7 @@
           <Property Name="RoleId" Type="int" />
           <Property Name="MenuId" Type="int" />
         </EntityType>
+        <Function Name="GetDashboardData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GetIsCheckIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="EmployeeId" Type="int" Mode="In" />
         </Function>
@@ -82,8 +83,7 @@
           <EntitySet Name="tblRole" EntityType="Self.tblRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRoleMenuMapping" EntityType="Self.tblRoleMenuMapping" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HRMSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -161,12 +161,19 @@
           <EntitySet Name="tblRoles" EntityType="Self.tblRole" />
           <EntitySet Name="tblRoleMenuMappings" EntityType="Self.tblRoleMenuMapping" />
           <FunctionImport Name="GetIsCheckIn" ReturnType="Collection(HRMSDBModel.GetIsCheckIn_Result)">
-            <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+          <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="GetDashboardData" ReturnType="Collection(HRMSDBModel.GetDashboardData_Result)" />
         </EntityContainer>
         <ComplexType Name="GetIsCheckIn_Result">
           <Property Type="Int32" Name="CheckedIn" Nullable="true" />
           <Property Type="Int32" Name="Id" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetDashboardData_Result">
+          <Property Type="Int32" Name="EmployeeCount" Nullable="true" />
+          <Property Type="Int32" Name="EmployeeAbsent" Nullable="true" />
+          <Property Type="Int32" Name="NewEmployeeCount" Nullable="true" />
+          <Property Type="Int32" Name="EmployeePresent" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -251,6 +258,16 @@
               <ComplexTypeMapping TypeName="HRMSDBModel.GetIsCheckIn_Result">
                 <ScalarProperty Name="CheckedIn" ColumnName="CheckedIn" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDashboardData" FunctionName="HRMSDBModel.Store.GetDashboardData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="HRMSDBModel.GetDashboardData_Result">
+                <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
+                <ScalarProperty Name="EmployeeAbsent" ColumnName="EmployeeAbsent" />
+                <ScalarProperty Name="NewEmployeeCount" ColumnName="NewEmployeeCount" />
+                <ScalarProperty Name="EmployeePresent" ColumnName="EmployeePresent" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
