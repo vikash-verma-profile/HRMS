@@ -1,8 +1,12 @@
 ﻿using HRMS.Entity;
 using HRMS.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,21 +23,34 @@ namespace HRMS.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Login login)
+        public async Task<ActionResult> Index(Login login)
         {
-            if(db.tblLogins.Any(x=>x.UserName==login.UserName && x.Password == login.Password))
+            var loginResponseObject = new LoginResponse();
+            var client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44347/");
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            var loginjson = JsonConvert.SerializeObject(login);
+            HttpResponseMessage res = await client.PostAsync("api/Login/Login", new StringContent(loginjson,Encoding.UTF8, "application/json"));
+            if (res.IsSuccessStatusCode)
             {
-
-                //create a session here
-                var loginObject = db.tblLogins.Where(x => x.UserName == login.UserName && x.Password == login.Password).FirstOrDefault();
-                var EmployeeObject = db.tblEmployees.Where(x => x.Id == loginObject.EmployeeId).FirstOrDefault();
-                Session["UserName"] = EmployeeObject.EmployeeName;
-                Session["EmployeeId"] = EmployeeObject.Id;
-                return RedirectToAction("Index", "Dashboard");                
+                var loginresult = res.Content.ReadAsStringAsync().Result;
+                loginResponseObject = JsonConvert.DeserializeObject<LoginResponse>(loginresult);
+                if (loginResponseObject.IsLogin)
+                {
+                    //create a session here
+                    Session["UserName"] = loginResponseObject.EmployeeName;
+                    Session["EmployeeId"] = loginResponseObject.EmployeeId;
+                    return RedirectToAction("Index", "Dashboard");
+                }
+                else
+                {
+                    //write login for login fail
+                }
             }
             else
             {
-                //if condition fails come here
+                //write login for login fail
             }
             return View();
         }
